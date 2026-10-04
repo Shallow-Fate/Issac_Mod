@@ -21,7 +21,7 @@
 
 ## 下载与安装
 
-1. 从 [v1.7 Release](https://github.com/gzj60/Issac_Mod/releases/tag/v1.7) 下载 `player_homing_tears-v1.7.zip`。
+1. 从 [v1.7 Release](https://github.com/Shallow-Fate/Issac_Mod/releases/tag/v1.7) 下载 `player_homing_tears-v1.7.zip`。
 2. 解压后，将其中的 `player_homing_tears` 文件夹复制到游戏安装目录的 `mods` 文件夹。
 3. 确认最终文件路径类似：
 
