@@ -5,6 +5,13 @@ local PIERCING_FLAG = TearFlags.TEAR_PIERCING
 local SPECTRAL_FLAG = TearFlags.TEAR_SPECTRAL
 local HOMING_STRENGTH = 0.30
 local MIN_VECTOR_LENGTH = 0.001
+local STARTING_PICKUP_COUNT = 99
+
+local function onPlayerInit(_, player)
+    player:AddCoins(STARTING_PICKUP_COUNT - player:GetNumCoins())
+    player:AddBombs(STARTING_PICKUP_COUNT - player:GetNumBombs())
+    player:AddKeys(STARTING_PICKUP_COUNT - player:GetNumKeys())
+end
 
 local function getPlayerOwner(entity)
     if entity == nil then
@@ -156,8 +163,11 @@ local function onLaserUpdate(_, laser)
     steerLaserTowardTarget(laser)
 end
 
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, onPlayerInit)
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, onTearUpdate)
 mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, onLaserInit)
 mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, onLaserUpdate)
+
+include("quality_of_life")(mod)
 
 Isaac.DebugString("[Player Homing Tears] loaded")

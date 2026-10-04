@@ -3,8 +3,8 @@
     <name>Player Homing Tears</name>
     <directory>player_homing_tears</directory>
     <id>0</id>
-    <description>Player and friendly familiar tears gain piercing, spectral movement, and strong homing. Their lasers also gain unlimited range. Enemy attacks are unchanged.</description>
-    <version>1.3</version>
+    <description>Enhanced tears and lasers, Guppy's Eye at run start, extra carrying slots, revealed secret rooms, repeatable post-boss deal access, instant trading payouts, and a Chinese WASD inventory drop list.</description>
+    <version>1.7</version>
     <visibility>Private</visibility>
     <tag id="Lua"/>
 </metadata>

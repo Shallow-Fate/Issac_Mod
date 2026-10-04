@@ -11,6 +11,16 @@ def read_workspace_lua():
     return (WORKSPACE_MOD_DIR / "main.lua").read_text(encoding="utf-8")
 
 
+def test_every_player_starts_with_99_pickups():
+    lua = read_workspace_lua()
+
+    assert "local STARTING_PICKUP_COUNT = 99" in lua
+    assert "ModCallbacks.MC_POST_PLAYER_INIT" in lua
+    assert "STARTING_PICKUP_COUNT - player:GetNumCoins()" in lua
+    assert "STARTING_PICKUP_COUNT - player:GetNumBombs()" in lua
+    assert "STARTING_PICKUP_COUNT - player:GetNumKeys()" in lua
+
+
 def test_player_tears_keep_native_range_and_receive_other_enhancements():
     lua = read_workspace_lua()
 
@@ -77,18 +87,19 @@ def test_enemy_lasers_remain_unchanged():
 
 
 def test_workspace_and_installed_mod_are_synchronized():
-    for filename in ("main.lua", "metadata.xml"):
+    for filename in ("main.lua", "quality_of_life.lua", "metadata.xml", "content/shaders.xml"):
         workspace_content = (WORKSPACE_MOD_DIR / filename).read_bytes()
         installed_content = (INSTALLED_MOD_DIR / filename).read_bytes()
         assert installed_content == workspace_content
 
 
-def test_metadata_describes_native_range_tears_and_unlimited_lasers():
+def test_metadata_describes_starting_pickups_native_range_tears_and_unlimited_lasers():
     xml = (WORKSPACE_MOD_DIR / "metadata.xml").read_text(encoding="utf-8")
 
     assert "<name>Player Homing Tears</name>" in xml
     assert "<id>0</id>" in xml
-    assert "<version>1.3</version>" in xml
-    assert "tears gain piercing, spectral movement, and strong homing" in xml
-    assert "lasers also gain unlimited range" in xml
-    assert "Enemy attacks are unchanged" in xml
+    assert "<version>1.7</version>" in xml
+    assert "extra carrying slots" in xml
+    assert "Guppy's Eye at run start" in xml
+    assert "revealed secret rooms" in xml
+    assert "instant trading payouts" in xml
